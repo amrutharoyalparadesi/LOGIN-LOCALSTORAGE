@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e6f2ff;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            width: 300px;
+            margin: 100px auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            background: blue;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #message {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Login Form</h2>
+
+        <input type="email" id="email" placeholder="Enter Email">
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <br><br>
+
+        <button onclick="login()">Login</button>
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+
+        let user = {
+            email: "test@gmail.com",
+            password: "12345"
+        };
+
+        localStorage.setItem("user", JSON.stringify(user));
+
+        function login() {
+
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let savedUser = JSON.parse(localStorage.getItem("user"));
+
+            if (email === savedUser.email && password === savedUser.password) {
+                document.getElementById("message").innerHTML = "Login Successful";
+                document.getElementById("message").style.color = "green";
+            }
+            else {
+                document.getElementById("message").innerHTML = "Invalid email or password";
+                document.getElementById("message").style.color = "red";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
